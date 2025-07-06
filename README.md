@@ -83,6 +83,8 @@
 
 ###
 
+
+<!-- 
 <br clear="both">
 
 <img src="https://raw.githubusercontent.com/hossamyosri/hossamyosri/output/snake.svg" alt="Snake animation" />
@@ -99,3 +101,6 @@
 </picture>
 
 ###
+
+--> 
+
