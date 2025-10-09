@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hossam Yosri - IT Specialist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* --- CSS Variables for Light Mode (Default) --- */
+        :root {
+            --bg-color: #ffffff;
+            --secondary-bg: #f4f7f6;
+            --text-color: #333333;
+            --sub-text-color: #555555;
+            --heading-color: #007bff; /* Primary Blue */
+            --accent-color: #28a745; /* Green Accent */
+            --card-bg: #ffffff;
+            --card-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            --border-color: #e0e0e0;
+            --hero-bg-gradient: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        }
+
+        /* --- Dark Mode Variables --- */
+        [data-theme="dark"] {
+            --bg-color: #1a1a2e;
+            --secondary-bg: #2c2c47;
+            --text-color: #f0f0f0;
+            --sub-text-color: #cccccc;
+            --heading-color: #64ffda; /* Bright Teal */
+            --accent-color: #ffc107; /* Gold Accent */
+            --card-bg: #2c2c47;
+            --card-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+            --border-color: #444466;
+            --hero-bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #00bcd4 100%);
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-bg); /* Use light gray background */
+            color: var(--text-color);
+            direction: ltr;
+            text-align: left;
+            transition: background-color 0.5s, color 0.5s;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--heading-color); /* Underline style */
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        [data-theme="dark"] .theme-toggle {
+            background-color: var(--heading-color);
+            color: var(--secondary-bg);
+        }
+
+        /* Navigation Bar (Clean Header) */
+        .navbar {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 10px 0;
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--heading-color);
+            text-decoration: none;
+        }
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--heading-color);
+        }
+        .nav-button {
+            background-color: var(--heading-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+        
+        /* 1. Hero Section (Profile Card) */
+        .hero-section {
+            padding: 60px 0;
+            background-color: var(--secondary-bg);
+        }
+        .profile-card-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+        }
+        .contact-sidebar {
+            width: 280px;
+            padding-right: 20px;
+            border-right: 1px solid var(--border-color);
+        }
+        .contact-sidebar h3 {
+            color: var(--text-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        .contact-item i {
+            color: var(--heading-color);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        .status-badge {
+            display: inline-block;
+            background-color: #fce4e4;
+            color: #d32f2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        [data-theme="dark"] .status-badge {
+            background-color: #470f0f;
+            color: #ff5252;
+        }
+
+        .profile-main-content h2 {
+            font-size: 2.5em;
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .profile-main-content p {
+            color: var(--sub-text-color);
+        }
+
+        /* 2. Experience & Timeline */
+        .experience-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+        }
+        .experience-card:hover {
+            transform: translateY(-3px);
+            border-left: 5px solid var(--accent-color);
+        }
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .experience-header h3 {
+            color: var(--heading-color);
+            margin: 0;
+            font-size: 1.3em;
+        }
+        .experience-header .date {
+            font-size: 0.9em;
+            color: var(--sub-text-color);
+            font-style: italic;
+        }
+        .experience-card ul {
+            padding-left: 20px;
+            list-style: disc;
+            color: var(--sub-text-color);
+            margin-top: 15px;
+        }
+        .experience-card li {
+            margin-bottom: 8px;
+        }
+
+        /* 3. Skills Section (Grid/Card-Based) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .skill-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: border-color 0.3s;
+            height: 100%; /* Ensure uniform height */
+        }
+        .skill-card:hover {
+            border-color: var(--heading-color);
+        }
+        .skill-card h3 {
+            color: var(--text-color);
+            font-size: 1.2em;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .skill-card i {
+            color: var(--accent-color);
+            margin-right: 8px;
+        }
+        .skill-list-items {
+            list-style: none;
+            padding: 0;
+        }
+        .skill-list-items li {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: var(--sub-text-color);
+        }
+        .skill-list-items li strong {
+            color: var(--text-color);
+        }
+
+        /* 4. Projects Section (Card-Based) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--heading-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .project-card h3 {
+            color: var(--heading-color);
+            margin-top: 0;
+        }
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 12px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        .project-link:hover {
+            background-color: #1e7e34;
+        }
+        .project-link i {
+            margin-right: 5px;
+        }
+
+        /* 5. Certifications (Card Grid) */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .cert-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: var(--card-shadow);
+        }
+        .cert-item i {
+            color: var(--heading-color);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .cert-item:hover {
+            background-color: var(--heading-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .cert-item:hover i {
+            color: var(--accent-color);
+        }
+        .in-progress {
+            border: 2px dashed #ffc107;
+        }
+        .in-progress i {
+            color: #ffc107;
+        }
+        .in-progress:hover {
+            background-color: #ffc107;
+            color: var(--text-color);
+        }
+        .in-progress:hover i {
+            color: var(--text-color);
+        }
+
+        /* 6. Footer */
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body data-theme="light">
+    
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Light/Dark Theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">Hossam Yosri</a>
+            <div class="nav-links">
+                <a href="#profile">Profile</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#certs">Certificates</a>
+                <a href="#projects">Projects</a>
+                <a href="mailto:hossamyousry907@gmail.com" class="nav-button">Get In Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="profile" class="hero-section">
+        <div class="container">
+            <div class="profile-card-container">
+                <div class="contact-sidebar">
+                    <h3><i class="fas fa-id-badge"></i> Contact & Status</h3>
+                    <div class="contact-item"><i class="fas fa-envelope"></i> hossamyousry907@gmail.com</div>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Kuwait, Sabah ElSalem</div>
+                    <div class="contact-item">
+                        <i class="fas fa-briefcase"></i>
+                        <a href="#" style="color: #d32f2f; text-decoration: none;">Available for Work (Kuwait)</a>
+                        <span class="status-badge">Available</span>
+                    </div>
+                    <div class="contact-item"><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/hossam-yosri/" target="_blank" style="color: var(--text-color);">Hossam Yosri (LinkedIn)</a></div>
+                    <h3 style="margin-top: 15px;"><i class="fab fa-whatsapp"></i> WhatsApp</h3>
+                    <div class="contact-item" style="margin-bottom: 5px;"><i class="fab fa-whatsapp"></i> +965 61003591 (Kuwait)</div>
+                    <div class="contact-item"><i class="fab fa-whatsapp"></i> +20 1026214384 (Egypt)</div>
+                </div>
+
+                <div class="profile-main-content">
+                    <h2 class="job-title">IT Specialist</h2>
+                    <p>
+                        [cite_start]**Motivated and detail-oriented IT Specialist** with over **3 years** of hands-on experience in technical support, system administration, and network operations across diverse environments[cite: 11]. [cite_start]Skilled in **Microsoft 365, Active Directory, DNS/DHCP, firewalls (Sophos, FortiGate), Windows Server administration, JIRA, and Cisco networking** equipment[cite: 12]. [cite_start]Proven ability to troubleshoot complex issues, implement IT solutions, and maintain secure, efficient systems[cite: 13].
+                    </p>
+                    <p>
+                        [cite_start]A quick learner with strong problem-solving skills, passionate about technology, and eager to take on new challenges[cite: 14]. [cite_start]Open to **relocation or international opportunities**, with a strong adaptability to different work cultures and environments[cite: 15]. [cite_start]Fluent in **Arabic** and **English**, with excellent communication skills to collaborate effectively across teams[cite: 16, 24, 26].
+                    </p>
+                    <img src="me.png" alt="Hossam Yosri's Photo" class="profile-img" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+            
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3>System Administrator | Yemen Embassy</h3>
+                    <span class="date">09/2024 - Present | Giza, Egypt</span>
+                </div>
+                <p style="color: var(--sub-text-color); font-weight: bold;">Yemen Embassy | Giza, Egypt</p>
+                <ul>
+                    [cite_start]<li>Administered and maintained **Microsoft 365, Active Directory, DNS/DHCP, Group Policies, and Ticketing System** to ensure secure and efficient IT operations[cite: 37, 38].</li>
+                    [cite_start]<li>Configured and managed enterprise firewalls **(Sophos, FortiGate)** and **VPN** connections, ensuring compliance with security standards[cite: 39].</li>
+                    [cite_start]<li>Designed, implemented, and maintained the embassy's **LAN infrastructure and structured cabling** systems[cite: 40].</li>
+                    [cite_start]<li>Oversaw **Windows Server 2022** setup including domain creation, **WSUS**, and **WDS** services for automated deployment and updates[cite: 42].</li>
+                    [cite_start]<li>Reviewed and documented **IT General Controls** (user access rights, password policies, backup procedures) in line with security best practices[cite: 43].</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3>IT Technical Support Specialist | Business Code</h3>
+                    <span class="date">07/2024 - 10/2024 | Cairo, Egypt</span>
+                </div>
+                <p style="color: var(--sub-text-color); font-weight: bold;">Business Code | Cairo, Egypt</p>
+                <ul>
+                    [cite_start]<li>Installed and configured **Cisco switches/routers, VLANs, and Ethernet cabling** for enterprise networks[cite: 58].</li>
+                    [cite_start]<li>Provided **L2 technical support** for network troubleshooting, connectivity issues, and firewall configurations[cite: 59].</li>
+                    [cite_start]<li>Managed **cPanel accounts, DNS records, and domain hosting** services[cite: 60].</li>
+                    [cite_start]<li>Installed and configured **rack-mounted servers, UPS systems**, and networking equipment with professional cable management[cite: 61].</li>
+                    [cite_start]<li>Cloned and imaged **Windows and Linux systems** using **Acronis and Clonezilla** for deployment and recovery[cite: 63].</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3>Freelance IT Specialist</h3>
+                    <span class="date">09/2021 - 12/2023</span>
+                </div>
+                <ul>
+                    [cite_start]<li>Provided global **remote IT support** via ticketing systems and remote desktop tools[cite: 67].</li>
+                    [cite_start]<li>Handled user **onboarding/offboarding** and hardware preparation[cite: 68].</li>
+                    [cite_start]<li>Created **knowledge base articles** and user guides to streamline IT support processes[cite: 69].</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-clipboard-list"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-card">
+                    <h3><i class="fas fa-users-cog"></i> Systems & Directory</h3>
+                    <ul class="skill-list-items">
+                        [cite_start]<li>**Windows Server** 2016/2019/2022 [cite: 87]</li>
+                        [cite_start]<li>**Active Directory, GPO, DNS, DHCP** [cite: 87]</li>
+                        [cite_start]<li>**WSUS, WDS** [cite: 87]</li>
+                        [cite_start]<li>Linux (Intermediate) [cite: 93]</li>
+                        [cite_start]<li>Microsoft 365 [cite: 114]</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-network-wired"></i> Networking</h3>
+                    <ul class="skill-list-items">
+                        [cite_start]<li>**TCP/IP, VLANs**, Routing & Switching [cite: 103]</li>
+                        [cite_start]<li>LAN/WAN, **VPN**, Network Access Control [cite: 104]</li>
+                        [cite_start]<li>**Cisco IOS**, Configuration [cite: 104]</li>
+                        [cite_start]<li>Firewall Configuration [cite: 104]</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-shield-alt"></i> Security & Firewalls</h3>
+                    <ul class="skill-list-items">
+                        [cite_start]<li>**FortiGate, Sophos** Firewalls [cite: 105]</li>
+                        [cite_start]<li>IT General Controls [cite: 89]</li>
+                        [cite_start]<li>Vulnerability Assessment, Patch Mgt [cite: 89]</li>
+                        [cite_start]<li>Backup & Recovery, **MFA** [cite: 89]</li>
+                        <li>Network Security</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-cloud"></i> Cloud & Virtualization</h3>
+                    <ul class="skill-list-items">
+                        [cite_start]<li>**Azure, AWS** [cite: 109][cite_start], Terraform (IaC) [cite: 109]</li>
+                        [cite_start]<li>**Docker** [cite: 111][cite_start], Hyper-V [cite: 111]</li>
+                        [cite_start]<li>**VMware ESXi**, Proxmox VE [cite: 111]</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-code"></i> Scripting & Automation</h3>
+                    <ul class="skill-list-items">
+                        [cite_start]<li>**PowerShell** (Automation) [cite: 96]</li>
+                        [cite_start]<li>Basic **Python** for IT Tasks [cite: 96]</li>
+                        [cite_start]<li>Workflow Automation (**make.com, n8n**) [cite: 96]</li>
+                        [cite_start]<li>Odoo ERP (Workflow/Module Mgt) [cite: 96]</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-toolbox"></i> Hardware & Infra</h3>
+                    <ul class="skill-list-items">
+                        [cite_start]<li>Server Installation & Upgrades [cite: 91]</li>
+                        [cite_start]<li>Rack Mounting, **Structured Cabling** [cite: 91]</li>
+                        [cite_start]<li>**UPS Systems**, Printers & Peripherals [cite: 91]</li>
+                        [cite_start]<li>**CCTV** Installation & Maintenance [cite: 112]</li>
+                        [cite_start]<li>Remote (**iDRAC, iLO, IPMI**) [cite: 116]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-rocket"></i> Key Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <h3>IT Automation Toolkit</h3>
+                    [cite_start]<p>Built a command-line IT automation toolkit in **Windows Batch** to streamline routine support operations and troubleshooting workflows[cite: 131].</p>
+                    <a href="https://github.com/hossamyosri/Scripts" target="_blank" class="project-link"><i class="fas fa-code-branch"></i> View Code</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Network Security Lab</h3>
+                    [cite_start]<p>Configured **FortiGate/Sophos firewalls, VPN tunnels**, and access control policies (ACLs) to simulate a secure environment[cite: 133].</p>
+                    <a href="https://github.com/hossamyosri/Network" target="_blank" class="project-link"><i class="fas fa-network-wired"></i> View Details</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Network Sniffing & Analysis</h3>
+                    [cite_start]<p>Captured and analyzed traffic using **Wireshark** for troubleshooting and optimization, demonstrating proficiency in traffic flow[cite: 129].</p>
+                    <a href="#" target="_blank" class="project-link"><i class="fas fa-eye"></i> View Details</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Network Design & Implementation</h3>
+                    [cite_start]<p>Designed **VLANs, routing protocols, and firewall rules** using Cisco Packet Tracer[cite: 123].</p>
+                    <a href="#" target="_blank" class="project-link"><i class="fas fa-sitemap"></i> View Details</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Company Profile Website</h3>
+                    [cite_start]<p>Designed and developed a company website showcasing services using **HTML & CSS**[cite: 121].</p>
+                    <a href="https://hossamyosri.github.io/Project/pro2.html" target="_blank" class="project-link"><i class="fas fa-globe"></i> View Website</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="certs" class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education & Certificates</h2>
+
+            <div style="display: flex; gap: 30px;">
+                <div style="flex: 1;">
+                    <h3 style="color: var(--heading-color); border-bottom: 2px solid var(--border-color); padding-bottom: 5px;"><i class="fas fa-university"></i> Academic Background</h3>
+                    <div class="experience-card" style="margin-bottom: 10px;">
+                        <div class="experience-header">
+                            <h3>Bachelor of Information Technology</h3>
+                            <span class="date">09/2020 – 06/2024</span>
+                        </div>
+                        <p style="margin: 5px 0 0 0;">**Matrouh University** | [cite_start]Marsa Matrouh, Egypt [cite: 18, 19, 20]</p>
+                        [cite_start]<p style="margin: 5px 0 0 0; color: var(--accent-color);">Military Status: **Exemption** [cite: 22]</p>
+                    </div>
+                </div>
+
+                <div style="flex: 1;">
+                    <h3 style="color: var(--heading-color); border-bottom: 2px solid var(--border-color); padding-bottom: 5px;"><i class="fas fa-medal"></i> Awards & Recognition</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        [cite_start]<li class="experience-card" style="padding: 15px; margin-bottom: 10px;">Excellence in **Networking Projects** – Matrouh University, 2023/2024 [cite: 136]</li>
+                        [cite_start]<li class="experience-card" style="padding: 15px; margin-bottom: 10px;">Leadership Development Institute in Helwan [cite: 140]</li>
+                        [cite_start]<li class="experience-card" style="padding: 15px; margin-bottom: 10px;">Secretary of the Supreme Cultural Committee (2022/2023 + 2023/2024) [cite: 144]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 40px; border-bottom: 3px solid var(--accent-color);"><i class="fas fa-certificate"></i> Key Certifications</h3>
+            <div class="cert-grid">
+                
+                [cite_start]<a href="#" target="_blank" class="cert-item in-progress"><i class="fas fa-hourglass-half"></i> Odoo ERP Workflow/Module Management (**Studying**) [cite: 85]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item in-progress"><i class="fas fa-hourglass-half"></i> Azure Administrator (AZ-104, Self-Study) [cite: 53]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fas fa-server"></i> MCSA & System Admin (Self-Study) [cite: 48, 50]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fas fa-project-diagram"></i> CCNA (Self-Study) [cite: 49, 50]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fab fa-google"></i> Google Technical Support Professional Certificate [cite: 85]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fas fa-firewall"></i> FortiGate Firewall [cite: 84]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fas fa-shield-alt"></i> Sophos Firewall (Network Security) [cite: 54, 73]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fab fa-linux"></i> Linux Admin Level 1 & 2 [cite: 52]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fab fa-linux"></i> Red Hat Linux Admin 1 (RH124) [cite: 75]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fab fa-linux"></i> Red Hat Admin 2 (RH134) [cite: 83]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fas fa-cloud"></i> Azure Fundamentals (AZ-900) [cite: 76]</a>
+                [cite_start]<a href="#" target="_blank" class="cert-item"><i class="fas fa-network-wired"></i> Network Admin - Configuration Network [cite: 74]</a>
+
+                <p style="grid-column: 1 / -1; text-align: center; margin-top: 15px; color: #ff5252;">
+                    <i class="fas fa-exclamation-triangle"></i> Placeholder links used. Please replace the **# URLs** with the real links to your hosted certificates.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hossam Yosri - IT Specialist. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const toggleButton = document.getElementById('theme-toggle');
+
+            // Function to toggle theme and icon
+            const toggleTheme = () => {
+                const isDark = body.getAttribute('data-theme') === 'dark';
+                const newTheme = isDark ? 'light' : 'dark';
+                
+                body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                // Update icon
+                const icon = toggleButton.querySelector('i');
+                icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                
+                // Re-apply original box-shadow to elements after theme switch
+                const interactiveElements = document.querySelectorAll('.experience-card, .skill-card, .project-card, .cert-item');
+                interactiveElements.forEach(card => {
+                    card.style.boxShadow = 'var(--card-shadow)';
+                });
+            };
+
+            // 1. Initialize Theme on Load (Check Local Storage)
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            body.setAttribute('data-theme', savedTheme);
+            toggleButton.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            // Event listener for theme toggle button
+            toggleButton.addEventListener('click', toggleTheme);
+
+            // 2. Enhanced hover effect on cards
+            const interactiveElements = document.querySelectorAll('.experience-card, .project-card');
+            interactiveElements.forEach(card => {
+                card.addEventListener('mouseover', () => {
+                    card.style.transform = 'translateY(-3px)';
+                    // Use a slightly stronger, fixed shadow on hover for effect
+                    card.style.boxShadow = '0 8px 18px rgba(0, 0, 0, 0.2)';
+                });
+                card.addEventListener('mouseout', () => {
+                    card.style.transform = '';
+                    // Reset to the current theme's defined shadow
+                    card.style.boxShadow = 'var(--card-shadow)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
