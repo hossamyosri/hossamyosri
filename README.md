@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="me.png" width="120px" style="border-radius: 50%;" alt="Hossam Yosri"/>
+  <img src="me.jpeg" width="120px" style="border-radius: 50;" alt="Hossam Yosri"/>
 
   <h1>Hossam Yosri</h1>
 
