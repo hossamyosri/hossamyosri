@@ -1,7 +1,5 @@
 <div align="center">
 
-  <img src="me.jpeg" width="120px" style="border-radius: 50;" alt="Hossam Yosri"/>
-
   <h1>Hossam Yosri</h1>
 
   <h3>IT Specialist | System Administrator | Network Engineer | DevOps & Cloud Enthusiast</h3>
